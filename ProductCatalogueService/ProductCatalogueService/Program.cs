@@ -6,13 +6,13 @@ using ProductApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
- .AddJsonOptions(options =>
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
         options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 // Register MongoDB configuration from appsettings.json
 builder.Services.Configure<ProductDatabaseSettings>(
-    builder.Configuration.GetSection("ProductDatabaseSettings"));
+    builder.Configuration.GetSection("ProductDatabase"));
 
 // Register MongoClient as a singleton
 builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
